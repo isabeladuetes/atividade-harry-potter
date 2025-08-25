@@ -1,5 +1,10 @@
 import express from "express";
-import bruxos from "./src/data/bruxos.js";
+
+//Importar dados
+import dados from "./src/data/dados.js";
+
+//Puxei a variavel de dentro de dados
+const { bruxos, casas, varinhas, animais, pocoes } = dados;
 
 const serverPort = 3000;
 
@@ -13,9 +18,105 @@ app.get("/", (req,res) => {
 
 //Roata dos Bruxos
 app.get("/bruxos", (req, res) => {
-    res.json(bruxos);
+    if (bruxos.length > 0) {
+        res.status(200).json(bruxos);
+    } else {
+        res.status(404).json({
+            mensagem: "Nenhum bruxo encontrado!"
+        })
+    }
 });
 
+//Roata dos Casas
+app.get("/casas", (req, res) => {
+    if (casas.length > 0) {
+        res.status(200).json(casas);
+    } else {
+        res.status(404).json({
+            mensagem: "Nenhuma casa encontrada!"
+        })
+    }
+});
+
+//Roata das Varinhas
+app.get("/varinhas", (req, res) => {
+    if (varinhas.length > 0) {
+        res.status(200).json(varinhas);
+    } else {
+        res.status(404).json({
+            mensagem: "Nenhuma varinha encontrada!"
+        })
+    }
+});
+
+//Roata dos Animais
+app.get("/animais", (req, res) => {
+    if (animais.length > 0) {
+        res.status(200).json(animais);
+    } else {
+        res.status(404).json({
+            mensagem: "Nenhum animal encontrado!"
+        })
+    }
+});
+
+//Roata das Poções
+app.get("/pocoes", (req, res) => {
+    if (pocoes.length > 0) {
+        res.status(200).json(pocoes);
+    } else {
+        res.status(404).json({
+            mensagem: "Nenhuma poção encontrada!"
+        })
+    }
+});
+
+//Criar a rota do GetById - Varinha
+app.get("/varinhas/:id", (req, res) => {
+    let id = req.params.id;
+    id = parseInt(id)
+    const varinha = varinhas.find(v => v.id === id);
+
+    if(varinha) {
+        res.status(200).json(varinha);
+    } else {
+        res.status(404).json({
+            mensagem: "Varinha não encontrada!"
+        })
+    }
+});
+
+//Criar a rota do GetById - Animais
+app.get("/animais/:id", (req, res) => {
+    let id = req.params.id;
+    id = parseInt(id)
+    const animal = animais.find(a => a.id === id);
+
+    if(animal) {
+        res.status(200).json(animal);
+    } else {
+        res.status(404).json({
+            mensagem: "Animal não encontrado!"
+        })
+    }
+});
+
+//Criar a rota do GetById - Poçôes
+app.get("/pocoes/:id", (req, res) => {
+    let id = req.params.id;
+    id = parseInt(id)
+    const pocao = pocoes.find(p => p.id === id);
+
+    if(pocao) {
+        res.status(200).json(pocao);
+    } else {
+        res.status(404).json({
+            mensagem: "Poção não encontrada!"
+        })
+    }
+});
+
+//Outra atividade
 //Criar a rota do GetByName
 app.get("/bruxos/nome/:nome", (req, res) => {
     let nome = req.params.nome;
@@ -30,7 +131,7 @@ app.get("/bruxos/nome/:nome", (req, res) => {
             mensagem: "Bruxo(a) não encontrado!"
         })
     }
-})
+});
 
 //Criar a rota do GetById
 app.get("/bruxos/:id", (req, res) => {
@@ -46,6 +147,7 @@ app.get("/bruxos/:id", (req, res) => {
         })
     }
 });
+//Fim da outra atividade
 
 //Iniciar Servidor
 app.listen(serverPort, () => {
