@@ -16,7 +16,7 @@ app.get("/", (req,res) => {
     res.send("Vamos de Harry Potter");
 });
 
-//Roata dos Bruxos
+//Rota dos Bruxos
 app.get("/bruxos", (req, res) => {
     if (bruxos.length > 0) {
         res.status(200).json(bruxos);
@@ -27,7 +27,7 @@ app.get("/bruxos", (req, res) => {
     }
 });
 
-//Roata dos Casas
+//Rota dos Casas
 app.get("/casas", (req, res) => {
     if (casas.length > 0) {
         res.status(200).json(casas);
@@ -38,7 +38,7 @@ app.get("/casas", (req, res) => {
     }
 });
 
-//Roata das Varinhas
+//Rota das Varinhas
 app.get("/varinhas", (req, res) => {
     if (varinhas.length > 0) {
         res.status(200).json(varinhas);
@@ -49,7 +49,7 @@ app.get("/varinhas", (req, res) => {
     }
 });
 
-//Roata dos Animais
+//Rota dos Animais
 app.get("/animais", (req, res) => {
     if (animais.length > 0) {
         res.status(200).json(animais);
@@ -60,7 +60,7 @@ app.get("/animais", (req, res) => {
     }
 });
 
-//Roata das Poções
+//Rota das Poções
 app.get("/pocoes", (req, res) => {
     if (pocoes.length > 0) {
         res.status(200).json(pocoes);
